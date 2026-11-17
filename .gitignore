@@ -1,0 +1,51 @@
+# Secrets
+.env
+.cdsapirc
+**/profiles.local.yml
+
+# Data: never committed (size, licences, and health data confidentiality)
+data/raw/
+data/processed/
+data/boundaries/
+*.nc
+*.nc.part
+*.part
+*.parquet
+*.grib
+*.zip
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+*.cst
+*.gpkg
+*.geojson
+reports/*
+!reports/.gitkeep
+logs/*
+!logs/.gitkeep
+
+# dbt
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+dbt/.user.yml
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+~$*

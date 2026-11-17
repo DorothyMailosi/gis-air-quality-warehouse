@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+  - name: air_staging
+    description: Warehouse layer loaded by the gaia_pipeline Python package and DHIS2 loads.
+    schema: air_staging
+    tables:
+      - name: fact_sat_air_quality_obs
+        description: >
+          Satellite/reanalysis air-quality observations (CAMS EAC4), one row per
+          time step, admin unit, pollutant and source. Values in µg/m3.
+          Keys and references are enforced by the table's primary and foreign keys.
+      - name: fact_meteorology_obs
+        description: Daily weather per district (ERA5) and legacy city area means, display units.
+      - name: met_variable
+      - name: city
+      - name: country
+        columns:
+          - name: iso2
+            data_tests: [unique, not_null]
+      - name: admin_unit
+      - name: pollutant
+        columns:
+          - name: code
+            data_tests: [unique, not_null]
+      - name: source_system
+      - name: fact_health_district_aggregates
+        description: District health indicators (DHIS2), monthly.
+      - name: health_indicator
+      - name: grid_cell_admin_map
+        description: CAMS grid cell to admin unit mapping written by the pipeline.
+      - name: pipeline_run_log
+        description: Audit trail of pipeline stages per country-month.

@@ -1,0 +1,83 @@
+# Global pipeline settings.
+#
+# ${VAR} and ${VAR:-default} are replaced with environment variables
+# (a .env file in the repository root is read automatically).
+# Secrets never go in this file.
+
+paths:
+  raw_dir: data/raw              # downloaded NetCDF, one folder per country
+  processed_dir: data/processed  # standardised Parquet, one folder per country
+  boundaries_dir: data/boundaries
+  reports_dir: reports
+  logs_dir: logs
+  # Folder holding the DHIS2 health exports named in each country's
+  # `health.file`. Kept outside the repository: health data is never committed.
+  health_dir: ${GAIA_HEALTH_DATA_DIR:-data/health}
+
+database:
+  host: ${AIR_DB_HOST:-localhost}
+  port: ${AIR_DB_PORT:-5433}
+  dbname: ${AIR_DB_NAME:-air_polution}
+  user: ${AIR_DB_USER:-postgres}
+  password: ${AIR_DB_PASSWORD}
+  schema: air_staging
+
+copernicus:
+  # Atmosphere Data Store. The API key is read from ADS_API_KEY, or from
+  # ~/.cdsapirc when ADS_API_KEY is not set.
+  url: https://ads.atmosphere.copernicus.eu/api
+  api_key: ${ADS_API_KEY:-}
+  dataset: cams-global-reanalysis-eac4
+  dataset_version: eac4
+  times: ["00:00", "03:00", "06:00", "09:00", "12:00", "15:00", "18:00", "21:00"]
+  model_level: "60"              # lowest model level = surface concentration
+  grid_resolution_deg: 0.75
+  # Last date EAC4 is published for. ECMWF extends EAC4 roughly once a year;
+  # update this when a new year is released. Used when end: latest.
+  available_until: 2024-12-31
+  timeout_seconds: 3600
+  retries: 3
+  retry_wait_seconds: 60
+
+source_system:
+  # Row in air_staging.source_system that CAMS facts are attached to.
+  source_type: CAMS
+  name: copernicus-converted
+
+era5:
+  # Climate Data Store. ECMWF accounts are shared between ADS and CDS, so the
+  # same personal access token works; CDS_API_KEY overrides it if set.
+  url: https://cds.climate.copernicus.eu/api
+  api_key: ${CDS_API_KEY:-}
+  dataset: derived-era5-single-levels-daily-statistics
+  daily_statistic: daily_mean
+  time_zone: utc+00:00
+  frequency: 1_hourly
+  grid_resolution_deg: 0.25
+  # ERA5 is published with ~1 week delay; "latest" = last complete month.
+  available_until: latest
+  timeout_seconds: 3600
+  retries: 3
+  retry_wait_seconds: 60
+  source_system:
+    source_type: ERA5
+    name: era5-daily-statistics
+    version: daily_mean
+    url: https://cds.climate.copernicus.eu
+
+load:
+  qc_status: processed                 # cell centre inside the admin polygon
+  qc_status_nearest: processed_nearest  # admin unit filled from the nearest cell
+  nearest_cell_fallback: true
+  # max distance (km) from an admin unit to its nearest cell; units further
+  # away (e.g. a polygon outside the download area) are left empty.
+  nearest_cell_max_km: 100
+  # What to do when a fact row (time, district, pollutant, source) already
+  # exists: skip keeps existing values; update overwrites them. The CLI flag
+  # --refresh forces update for one run.
+  on_conflict: skip
+
+dbt:
+  project_dir: dbt
+  profiles_dir: dbt
+  target: dev

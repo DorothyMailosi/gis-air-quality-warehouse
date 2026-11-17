@@ -1,0 +1,42 @@
+enabled: true
+
+country:
+  name: Malawi
+  iso2: MW
+  iso3: MWI
+
+area: [-9.0, 32.25, -17.25, 36.0]
+
+boundaries:
+  # The 28 districts already exist in the warehouse (linked to DHIS2 health
+  # data). Their stored polygons are small, so most districts are filled
+  # from the nearest grid cell (see load.nearest_cell_fallback).
+  admin_level: 2
+  source: gadm
+  gadm_level: 1
+  region_column: NAME_1
+  name_column: NAME_1
+  code_column: GID_1
+
+pollutants: [pm25, pm10, o3, no2, "no", so2, nox]
+
+period:
+  start: 2018-01-01
+  end: latest
+
+# ERA5 daily weather (temperature, humidity, wind, precipitation) per district.
+weather:
+  enabled: true
+  # start: 2018-01-01    # defaults to period.start
+
+# DHIS2 monthly district export (path relative to GAIA_HEALTH_DATA_DIR).
+health:
+  file: MALAWI/malawi OPD and ARI data.csv
+  district_column: District
+  period: {month_column: Month, year_column: Year}
+  indicators:
+    "HMIS # of OPD Attendance": opd_attendance
+    "HMIS Acute Respiratory Infections - New Cases (U5)": ari_cases
+  denominator_column: Population estimates
+  district_mapping: config/mappings/malawi_dhis2_districts.csv
+  source: {source_type: DHIS2, name: Malawi DHIS2}

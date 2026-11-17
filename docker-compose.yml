@@ -1,0 +1,40 @@
+# Optional: a self-contained warehouse + Metabase for a fresh machine.
+#
+#   cp .env.example .env    # set AIR_DB_PASSWORD
+#   docker compose up -d
+#   python -m gaia_pipeline init-db      # with AIR_DB_PORT=5433 in .env
+#
+# Postgres is exposed on 5433 (same as the existing local warehouse; stop one
+# of them or change the port). Metabase: http://localhost:3000
+
+services:
+  warehouse:
+    image: postgis/postgis:15-3.5
+    environment:
+      POSTGRES_USER: ${AIR_DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${AIR_DB_PASSWORD:?set AIR_DB_PASSWORD in .env}
+      POSTGRES_DB: ${AIR_DB_NAME:-air_polution}
+    ports:
+      - "5433:5432"
+    volumes:
+      - warehouse-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${AIR_DB_USER:-postgres}"]
+      interval: 5s
+      retries: 10
+
+  metabase:
+    image: metabase/metabase:v0.50.36
+    ports:
+      - "3000:3000"
+    volumes:
+      - metabase-data:/metabase-data
+    environment:
+      MB_DB_FILE: /metabase-data/metabase.db
+    depends_on:
+      warehouse:
+        condition: service_healthy
+
+volumes:
+  warehouse-data:
+  metabase-data:

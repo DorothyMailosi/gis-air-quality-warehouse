@@ -1,0 +1,18 @@
+# Safe to commit: every value comes from environment variables.
+# The pipeline (python -m gaia_pipeline dbt) sets them from .env / config.
+# To run dbt directly, set AIR_DB_PASSWORD and use: dbt build --profiles-dir .
+gaia_air_quality:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('AIR_DB_HOST', 'localhost') }}"
+      port: "{{ env_var('AIR_DB_PORT', '5433') | as_number }}"
+      user: "{{ env_var('AIR_DB_USER', 'postgres') }}"
+      password: "{{ env_var('AIR_DB_PASSWORD') }}"
+      dbname: "{{ env_var('AIR_DB_NAME', 'air_polution') }}"
+      # Override with AIR_DBT_SCHEMA=analytics_dev to try changes without
+      # touching the tables the dashboard reads.
+      schema: "{{ env_var('AIR_DBT_SCHEMA', 'analytics') }}"
+      threads: 4
+      connect_timeout: 10

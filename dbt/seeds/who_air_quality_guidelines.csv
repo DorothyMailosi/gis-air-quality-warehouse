@@ -1,0 +1,10 @@
+pollutant_code,averaging_period,guideline_ugm3,source
+pm25,annual,5,WHO Global Air Quality Guidelines 2021
+pm25,24h,15,WHO Global Air Quality Guidelines 2021
+pm10,annual,15,WHO Global Air Quality Guidelines 2021
+pm10,24h,45,WHO Global Air Quality Guidelines 2021
+no2,annual,10,WHO Global Air Quality Guidelines 2021
+no2,24h,25,WHO Global Air Quality Guidelines 2021
+o3,peak_season,60,WHO Global Air Quality Guidelines 2021
+o3,8h,100,WHO Global Air Quality Guidelines 2021
+so2,24h,40,WHO Global Air Quality Guidelines 2021

@@ -1,0 +1,30 @@
+dhis2_district_name,admin_code,admin_level,admin_name,mapping_note
+Balaka,MLW-BALAKA,2,Balaka,exact_match
+Blantyre,MLW-BLANTYRE,2,Blantyre,exact_match
+Chikwawa,MLW-CHIKWAWA,2,Chikwawa,exact_match
+Chiradzulu,MLW-CHIRADZULU,2,Chiradzulu,exact_match
+Chitipa,MLW-CHITIPA,2,Chitipa,exact_match
+Dedza,MLW-DEDZA,2,Dedza,exact_match
+Dowa,MLW-DOWA,2,Dowa,exact_match
+Karonga,MLW-KARONGA,2,Karonga,exact_match
+Kasungu,MLW-KASUNGU,2,Kasungu,exact_match
+Likoma,MLW-LIKOMA,2,Likoma,exact_match
+Lilongwe,MLW-LILONGWE,2,Lilongwe,exact_match
+Machinga,MLW-MACHINGA,2,Machinga,exact_match
+Mangochi,MLW-MANGOCHI,2,Mangochi,exact_match
+Mchinji,MLW-MCHINJI,2,Mchinji,exact_match
+Mulanje,MLW-MULANJE,2,Mulanje,exact_match
+Mwanza,MLW-MWANZA,2,Mwanza,exact_match
+Mzimba North,MLW-MZIMBA,2,Mzimba,split_district_summed (Mzimba North + South = Mzimba)
+Mzimba South,MLW-MZIMBA,2,Mzimba,split_district_summed (Mzimba North + South = Mzimba)
+Neno,MLW-NENO,2,Neno,exact_match
+Nkhata bay,MLW-NKHATA_BAY,2,Nkhata Bay,exact_match
+Nkhotakota,MLW-NKHOTAKOTA,2,Nkhotakota,exact_match
+Nsanje,MLW-NSANJE,2,Nsanje,exact_match
+Ntcheu,MLW-NTCHEU,2,Ntcheu,exact_match
+Ntchisi,MLW-NTCHISI,2,Ntchisi,exact_match
+Phalombe,MLW-PHALOMBE,2,Phalombe,exact_match
+Rumphi,MLW-RUMPHI,2,Rumphi,exact_match
+Salima,MLW-SALIMA,2,Salima,exact_match
+Thyolo,MLW-THYOLO,2,Thyolo,exact_match
+Zomba,MLW-ZOMBA,2,Zomba,exact_match

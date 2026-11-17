@@ -1,0 +1,84 @@
+dhis2_district_name,admin_code,admin_level,admin_name,mapping_note,suggested_admin_code,suggested_admin_name,review_note
+Bakel,SEN.12.1_1,2,Bakel,exact_match,,,
+Bambey,SEN.2.1_1,2,Bambey,exact_match,,,
+Bignona,SEN.14.1_1,2,Bignona,exact_match,,,
+Birkelane,SEN.4.1_1,2,Birkilane,manual_spelling_match,,,
+Bounkiling,SEN.11.1_1,2,Bounkiling,exact_match,,,
+Coki,SEN.8.3_1,2,Louga,health_district_parent_department,,,
+Dagana,SEN.10.1_1,2,Dagana,exact_match,,,
+Dahra,SEN.8.2_1,2,Linguère,health_district_parent_department,,,
+Dakar Centre,SN-DEPT-12982139,2,Dakar,health_district_to_department,SEN.1.1_1,Dakar,two 'Dakar' units exist; the other Dakar health districts use SEN.1.1_1
+Dakar Nord,SEN.1.1_1,2,Dakar,health_district_parent_department,,,
+Dakar Ouest,SEN.1.1_1,2,Dakar,health_district_parent_department,,,
+Dakar Sud,SEN.1.1_1,2,Dakar,health_district_parent_department,,,
+Darou-Mousty,SEN.8.1_1,2,Kébémer,health_district_parent_department,,,
+Diakhao,SEN.4.1_1,2,Birkilane,health_district_to_department,SEN.3.1_1,Fatick,Diakhao is in Fatick département
+Diamniadio,SEN.1.4_1,2,Rufisque,health_district_parent_department,,,
+Diankhe Makhan,SEN.12.1_1,2,Bakel,health_district_to_department,SEN.12.2_1,Goudiry,Dianké Makha is in Goudiry département
+Dioffior,SEN.3.1_1,2,Fatick,manual_mapping,,,
+Diouloulou,SEN.7.2_1,2,Médina Yoro Foula,health_district_to_department,SEN.14.1_1,Bignona,Diouloulou is in Bignona département
+Diourbel,SEN.2.2_1,2,Diourbel,exact_match,,,
+Fatick,SEN.3.1_1,2,Fatick,exact_match,,,
+Foundiougne,SEN.3.2_1,2,Foundiougne,exact_match,,,
+Gossas,SEN.3.3_1,2,Gossas,exact_match,,,
+Goudiry,SEN.12.2_1,2,Goudiry,exact_match,,,
+Goudomp,SEN.11.2_1,2,Goudomp,exact_match,,,
+Guediawaye,SEN.1.2_1,2,Guédiawaye,manual_accent_match,,,
+Guinguineo,SEN.4.4_1,2,Malème Hodar,manual_accent_match,SEN.5.1_1,Guinguinéo,Guinguinéo is its own département
+Joal-Fadiouth,SEN.12.4_1,2,Tambacounda,health_district_to_department,SEN.13.1_1,Mbour,Joal-Fadiouth is in Mbour département
+Kaffrine,SEN.4.2_1,2,Kaffrine,exact_match,,,
+Kanel,SEN.9.1_1,2,Kanel,exact_match,,,
+Kaolack,SEN.5.2_1,2,Kaolack,exact_match,,,
+Kebemer,SEN.8.1_1,2,Kébémer,manual_accent_match,,,
+Kedougou,SEN.6.1_1,2,Kédougou,manual_accent_match,,,
+Keur Massar,SEN.1.3_1,2,Pikine,health_district_to_department,,,
+Keur Momar Sarr,SEN.8.3_1,2,Louga,health_district_to_department,,,
+Khombole,SEN.13.1_1,2,Mbour,health_district_to_department,SEN.13.2_1,Thiès,Khombole is in Thiès département
+Kidira,SEN.7.1_1,2,Kolda,health_district_to_department,SEN.12.1_1,Bakel,Kidira is in Bakel département
+Kolda,SEN.7.1_1,2,Kolda,exact_match,,,
+Koumpentoum,SEN.12.3_1,2,Koupentoum,manual_exact_after_review,,,
+Koungheul,SEN.4.3_1,2,Koungheul,exact_match,,,
+Lingere,SEN.8.2_1,2,Linguère,health_district_to_department,,,
+Louga,SEN.8.3_1,2,Louga,exact_match,,,
+Makacolibantang,SEN.6.3_1,2,Saraya,health_district_to_department,SEN.12.4_1,Tambacounda,Makacolibantang is in Tambacounda département
+Malem Hodar,SEN.3.3_1,2,Gossas,health_district_to_department,SEN.4.4_1,Malème Hodar,Malème Hodar is its own département
+Maleme Hoddar,SEN.3.3_1,2,Gossas,manual_spelling_accent_match,SEN.4.4_1,Malème Hodar,Malème Hodar is its own département
+Matam,SEN.9.2_1,2,Matam,exact_match,,,
+Mbacke,SEN.2.2_1,2,Diourbel,manual_accent_match,SEN.2.3_1,Mbacké,Mbacké is its own département
+Mbao,SEN.1.3_1,2,Pikine,health_district_parent_department,,,
+Mbour,SEN.13.1_1,2,Mbour,exact_match,,,
+Medina Yoro Foulah,SEN.6.2_1,2,Salémata,health_district_to_department,SEN.7.2_1,Médina Yoro Foula,Médina Yoro Foulah is its own département
+Mekhe,SEN.13.2_1,2,Thiès,health_district_to_department,SEN.13.3_1,Tivaouane,Mékhé is in Tivaouane département
+Ndoffane,SEN.2.3_1,2,Mbacké,health_district_to_department,SEN.5.2_1,Kaolack,Ndoffane is in Kaolack département
+Niakhar,SEN.3.1_1,2,Fatick,health_district_to_department,,,
+Nioro,SEN.5.3_1,2,Nioro du Rip,manual_mapping,,,
+North Dakar,SEN.1.1_1,2,Dakar,health_district_to_department,,,
+Oussouye,SEN.14.2_1,2,Oussouye,exact_match,,,
+Passy,SEN.3.1_1,2,Fatick,health_district_to_department,SEN.3.2_1,Foundiougne,Passy is in Foundiougne département
+Pete,SEN.13.2_1,2,Thiès,manual_mapping,SEN.10.2_1,Podor,Pété is in Podor département
+Pikine,SN-COMM-12989399,4,Pikine,exact_match,SEN.1.3_1,Pikine,currently a level-4 commune: cannot join level-2 air-quality data
+Podor,SEN.10.2_1,2,Podor,exact_match,,,
+Popenguine,SEN.12.4_1,2,Tambacounda,health_district_to_department,SEN.13.1_1,Mbour,Popenguine is in Mbour département
+Pout,SEN.13.1_1,2,Mbour,health_district_to_department,SEN.13.2_1,Thiès,Pout is in Thiès département
+Ranerou,SEN.9.3_1,2,Ranérou Ferlo,manual_short_name_match,,,
+Richard Toll,SEN.11.1_1,2,Bounkiling,health_district_to_department,SEN.10.1_1,Dagana,Richard-Toll is in Dagana département
+Rufisque,SN-ARR-12982159,3,Rufisque,exact_match,SEN.1.4_1,Rufisque,currently a level-3 arrondissement: cannot join level-2 air-quality data
+Saint Louis,SEN.10.3_1,2,Saint-Louis,manual_hyphen_match,,,
+Sakal,SEN.10.3_1,2,Saint-Louis,health_district_to_department,SEN.8.3_1,Louga,Sakal is in Louga département
+Salemata,SEN.6.1_1,2,Kédougou,health_district_to_department,SEN.6.2_1,Salémata,Salémata is its own département
+Sangalkam,SEN.1.3_1,2,Pikine,health_district_to_department,SEN.1.4_1,Rufisque,Sangalkam is in Rufisque département
+Saraya,SEN.6.3_1,2,Saraya,exact_match,,,
+Sedhiou,SEN.11.3_1,2,Sédhiou,manual_accent_match,,,
+Sokone,SEN.3.2_1,2,Foundiougne,health_district_to_department,,,
+South Dakar,SEN.1.1_1,2,Dakar,health_district_to_department,,,
+Tambacounda,SEN.12.4_1,2,Tambacounda,exact_match,,,
+Thiadiaye,SEN.12.4_1,2,Tambacounda,health_district_to_department,SEN.13.1_1,Mbour,Thiadiaye is in Mbour département
+Thies,SEN.13.2_1,2,Thiès,manual_accent_match,,,
+Thilogne,SEN.9.2_1,2,Matam,health_district_to_department,,,
+Thionck-Essyl,SEN.14.1_1,2,Bignona,manual_mapping,,,
+Tivaouane,SEN.13.3_1,2,Tivaouane,exact_match,,,
+Touba,SEN.2.2_1,2,Diourbel,manual_mapping,SEN.2.3_1,Mbacké,Touba is in Mbacké département
+Velingara,SEN.7.3_1,2,Vélingara,manual_accent_match,,,
+West Dakar,SEN.1.1_1,2,Dakar,health_district_to_department,,,
+Yeumbeul,SEN.1.3_1,2,Pikine,health_district_parent_department,,,
+Ziguinchor,SEN.14.3_1,2,Ziguinchor,exact_match,,,

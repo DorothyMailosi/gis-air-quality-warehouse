@@ -1,0 +1,73 @@
+# CAMS EAC4 variable catalogue.
+#
+# warehouse code -> how to request it from the ADS and how to find it in the
+# returned NetCDF. Units are converted to µg/m3 from the NetCDF "units"
+# attribute:
+#   kg m**-3  (aerosols)            value * 1e9
+#   kg kg**-1 (gases, mixing ratio) value * air_density * 1e9
+#     where air_density = surface_pressure / (287.05 * 2m_temperature)
+
+pollutants:
+  pm25:
+    request_name: particulate_matter_2.5um
+    level_type: single
+    netcdf_names: [pm2p5]
+  pm10:
+    request_name: particulate_matter_10um
+    level_type: single
+    netcdf_names: [pm10]
+  o3:
+    request_name: ozone
+    level_type: model
+    netcdf_names: [go3, o3]
+  no2:
+    request_name: nitrogen_dioxide
+    level_type: model
+    netcdf_names: [no2]
+  "no":   # quoted: unquoted `no` is read by YAML as the boolean false
+    request_name: nitrogen_monoxide
+    level_type: model
+    netcdf_names: ["no"]
+  so2:
+    request_name: sulphur_dioxide
+    level_type: model
+    netcdf_names: [so2]
+  nox:
+    # Derived: NO + NO2 in µg/m3 (same definition as the original Douala/Dakar loads).
+    derived_from: ["no", no2]
+
+# ERA5 daily weather (derived-era5-single-levels-daily-statistics, daily mean).
+# Codes match air_staging.met_variable; missing codes are created.
+weather:
+  t2m:
+    display_name: 2 m temperature
+    unit: °C
+    request_names: [2m_temperature]
+  rh:
+    display_name: Relative humidity
+    unit: "%"
+    request_names: [2m_temperature, 2m_dewpoint_temperature]
+  wspd:
+    display_name: Wind speed
+    unit: m/s
+    request_names: [10m_u_component_of_wind, 10m_v_component_of_wind]
+  wdir:
+    display_name: Wind direction
+    unit: deg
+    request_names: [10m_u_component_of_wind, 10m_v_component_of_wind]
+  tp:
+    display_name: Total precipitation
+    unit: mm/day
+    request_names: [total_precipitation]
+
+# Requested automatically whenever a gas (mixing ratio) is requested,
+# to convert kg/kg to µg/m3.
+meteorology:
+  t2m:
+    request_name: 2m_temperature
+    level_type: single
+    netcdf_names: [t2m]
+  sp:
+    request_name: surface_pressure
+    level_type: single
+    netcdf_names: [sp]

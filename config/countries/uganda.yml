@@ -1,0 +1,31 @@
+enabled: true
+
+country:
+  name: Uganda
+  iso2: UG
+  iso3: UGA
+
+area: [4.5, 29.25, -1.5, 35.25]
+
+boundaries:
+  # Districts are stored at warehouse level 3 (135 units in the warehouse).
+  # On a fresh warehouse they are loaded from the official 2020 district
+  # shapefile (136 districts, UBOS); copy its folder into data/boundaries/uganda/.
+  # Alternative: source: gadm, gadm_level: 1, *_column: NAME_1 / NAME_1 / GID_1.
+  admin_level: 3
+  source: file
+  file: data/boundaries/uganda/Uganda_Districts-2020---136-wgs84/Uganda_Districts-2020---136-wgs84.shp
+  region_column: d
+  name_column: d
+  code_column: dname2019
+
+pollutants: [pm25]
+
+period:
+  start: 2020-01-01
+  end: latest
+
+# ERA5 daily weather (temperature, humidity, wind, precipitation) per district.
+weather:
+  enabled: true
+  # start: 2018-01-01    # defaults to period.start

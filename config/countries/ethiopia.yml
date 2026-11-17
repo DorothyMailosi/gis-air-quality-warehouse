@@ -1,0 +1,28 @@
+enabled: true
+
+country:
+  name: Ethiopia
+  iso2: ET
+  iso3: ETH
+
+area: [15.0, 33.0, 3.0, 48.0]
+
+boundaries:
+  # 79 zones from the eth_adm2 shapefile (place it in data/boundaries/ethiopia/).
+  admin_level: 2
+  source: file
+  file: data/boundaries/ethiopia/eth_adm2.shp
+  region_column: NAME_1
+  name_column: NAME_2
+  code_column: ID_2
+
+pollutants: [pm25]
+
+period:
+  start: 2022-01-01
+  end: latest
+
+# ERA5 daily weather (temperature, humidity, wind, precipitation) per district.
+weather:
+  enabled: true
+  # start: 2018-01-01    # defaults to period.start

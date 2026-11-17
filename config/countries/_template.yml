@@ -1,0 +1,44 @@
+# Template for adding a country. Copy to <country>.yml, fill in, then run:
+#
+#   python -m gaia_pipeline run --country <country> --start 2024-01 --end 2024-12
+#
+# Files whose name starts with "_" are ignored by --all.
+
+enabled: false
+
+country:
+  name: Kenya
+  iso2: KE
+  iso3: KEN
+
+# Download area [North, West, South, East] in degrees. Pad by about one grid
+# cell (0.75°) beyond the national border so border districts get cells.
+area: [5.5, 33.5, -5.25, 42.5]
+
+boundaries:
+  # Warehouse admin level that facts are attached to (1-5).
+  admin_level: 2
+  # Used only when the warehouse has no admin units at admin_level yet:
+  #   gadm: download GADM 4.1 automatically (https://gadm.org, non-commercial licence)
+  #   file: a local shapefile/GeoPackage/GeoJSON (path relative to the repo root)
+  source: gadm
+  gadm_level: 1
+  # Columns in the boundary file (GADM defaults shown).
+  region_column: NAME_1
+  name_column: NAME_1
+  code_column: GID_1
+
+pollutants: [pm25, pm10, o3, no2, "no", so2, nox]
+
+period:
+  start: 2018-01-01
+  end: latest       # a date, or "latest" = copernicus.available_until
+
+# ERA5 daily weather for the same area and districts.
+weather:
+  enabled: true
+
+# Optional DHIS2 export (see docs/adding_a_country.md and malawi.yml / senegal.yml).
+# health:
+#   file: KENYA/dhis2_export.csv
+#   ...

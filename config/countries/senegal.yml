@@ -1,0 +1,45 @@
+enabled: true
+
+country:
+  name: Senegal
+  iso2: SN
+  iso3: SEN
+
+area: [17.25, -18.0, 12.0, -11.25]
+
+boundaries:
+  # Level-2 départements already exist in the warehouse (and are linked to
+  # DHIS2 health data), so they are reused. GADM is only used on a fresh
+  # warehouse.
+  admin_level: 2
+  source: gadm
+  gadm_level: 2
+  region_column: NAME_1
+  name_column: NAME_2
+  code_column: GID_2
+
+pollutants: [pm25, pm10, o3, no2, "no", so2, nox]
+
+period:
+  start: 2010-01-01
+  end: latest
+
+# ERA5 daily weather (temperature, humidity, wind, precipitation) per district.
+weather:
+  enabled: true
+  # start: 2018-01-01    # defaults to period.start
+
+# DHIS2 NCD monthly district export (path relative to GAIA_HEALTH_DATA_DIR).
+health:
+  file: SENEGAL/DHIS2_NCDs_Selected_variables.csv
+  district_column: DISTRICT
+  period: {column: PERIOD, format: "%B %Y"}
+  indicators:
+    "NCD_Number of cases of severe acute asthma": severe_acute_asthma
+    "NCD_Number of asthma attack cases": asthma_attack
+    "NCD_Number of confirmed stroke cases": confirmed_stroke
+  district_mapping: config/mappings/senegal_dhis2_districts.csv
+  # 27 health districts carry a suggested_admin_code correction in the mapping
+  # file (see docs/data_quality.md). Set to true once the team has reviewed them.
+  use_suggested_mapping: false
+  source: {source_type: DHIS2, name: Senegal DHIS2}

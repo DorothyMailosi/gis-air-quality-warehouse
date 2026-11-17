@@ -1,0 +1,148 @@
+version: 2
+
+models:
+  # --- PM2.5 models used by the Metabase dashboard (names/columns unchanged) ---
+  - name: district_daily_pm25
+    description: Daily PM2.5 statistics per administrative district, all countries.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [observation_date, admin_id, source_id]
+    columns:
+      - name: observation_date
+        data_tests: [not_null]
+      - name: admin_id
+        data_tests: [not_null]
+      - name: country_code
+        data_tests: [not_null]
+      - name: avg_pm25_ugm3
+        data_tests: [not_null]
+
+  - name: district_monthly_pm25
+    description: Monthly PM2.5 statistics per administrative district, all countries.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [observation_month, admin_id, source_id]
+    columns:
+      - name: observation_month
+        data_tests: [not_null]
+      - name: admin_id
+        data_tests: [not_null]
+      - name: avg_pm25_ugm3
+        data_tests: [not_null]
+
+  - name: country_daily_pm25
+    description: Daily PM2.5 statistics at country level.
+    columns:
+      - name: observation_date
+        data_tests: [not_null]
+      - name: country_code
+        data_tests: [not_null]
+      - name: avg_pm25_ugm3
+        data_tests: [not_null]
+
+  - name: country_pollution_rankings
+    description: Countries ranked by mean, 95th percentile and maximum PM2.5.
+
+  - name: district_monthly_health_pm25
+    description: >
+      Monthly district health indicators linked to monthly PM2.5 by admin unit
+      and month, for every country with district health data.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [observation_month, admin_id, indicator_id]
+    columns:
+      - name: observation_month
+        data_tests: [not_null]
+      - name: admin_id
+        data_tests: [not_null]
+      - name: indicator_id
+        data_tests: [not_null]
+      - name: health_value
+        data_tests: [not_null]
+      - name: avg_pm25_ugm3
+        data_tests: [not_null]
+
+  # --- Multi-pollutant models ---
+  - name: district_daily_air_quality
+    description: Daily statistics per district and pollutant (µg/m3), all countries.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [observation_date, admin_id, pollutant_code, source_id]
+          config:
+            # Known issue (docs/data_quality.md #1): legacy Douala gas rows are attached
+            # to admin unit 242 (Région de Dakar). Warn instead of failing until fixed;
+            # switch back to error afterwards.
+            severity: warn
+    columns:
+      - name: pollutant_code
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [pm25, pm10, o3, no2, "no", so2, nox]
+      - name: avg_ugm3
+        data_tests: [not_null]
+
+  - name: district_monthly_air_quality
+    description: >
+      Monthly statistics per district and pollutant, with the ratio to the WHO
+      2021 annual guideline (pm25, pm10, no2).
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [observation_month, admin_id, pollutant_code, source_id]
+          config:
+            severity: warn  # same known issue as district_daily_air_quality (docs/data_quality.md #1)
+    columns:
+      - name: observation_month
+        data_tests: [not_null]
+      - name: avg_ugm3
+        data_tests: [not_null]
+
+  - name: district_daily_who_exceedance
+    description: >
+      Daily district means against the WHO 2021 short-term guidelines
+      (24-hour for pm25, pm10, no2, so2; 8-hour for o3, compared using the
+      daily mean, which under-counts ozone exceedances).
+    columns:
+      - name: exceeds_guideline
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+                quote: false
+
+  - name: country_monthly_air_quality
+    description: Country monthly summary per pollutant, with % of district-days above the WHO guideline.
+
+  - name: district_monthly_weather
+    description: >
+      Monthly weather per district and source (ERA5): mean/min/max daily
+      temperature (°C), relative humidity (%), wind speed (m/s), total precipitation (mm).
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [observation_month, admin_id, source_system]
+    columns:
+      - name: avg_rh_pct
+        data_tests:
+          - accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 100
+
+  - name: district_monthly_health_air_quality
+    description: >
+      Monthly district health indicators with each pollutant's monthly exposure
+      and ERA5 weather (temperature, humidity, precipitation) side by side.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [observation_month, admin_id, indicator_id]
+
+  - name: data_coverage
+    description: Loaded data per country, admin level, pollutant and source (first/last month, districts).

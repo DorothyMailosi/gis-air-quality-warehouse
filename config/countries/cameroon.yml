@@ -1,0 +1,31 @@
+enabled: true
+
+country:
+  name: Cameroon
+  iso2: CM
+  iso3: CMR
+
+# Whole country, padded by ~one grid cell.
+area: [13.5, 8.25, 1.5, 16.5]
+
+boundaries:
+  # The original Douala load lives at level 1 ("Douala Area Mean", a single
+  # area-mean series). National coverage is added at level 2: the 58
+  # départements from GADM, so Douala appears as Wouri.
+  admin_level: 2
+  source: gadm
+  gadm_level: 2
+  region_column: NAME_1
+  name_column: NAME_2
+  code_column: GID_2
+
+pollutants: [pm25, pm10, o3, no2, "no", so2, nox]
+
+period:
+  start: 2010-01-01
+  end: latest
+
+# ERA5 daily weather (temperature, humidity, wind, precipitation) per district.
+weather:
+  enabled: true
+  # start: 2018-01-01    # defaults to period.start

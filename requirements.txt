@@ -1,0 +1,15 @@
+# Runtime dependencies (tested with Python 3.9 - 3.12).
+cdsapi>=0.7.7,<1
+PyYAML>=6.0,<7
+requests>=2.31,<3
+numpy>=1.26,<3
+pandas>=2.0,<3
+pyarrow>=15.0
+xarray>=2024.1
+netCDF4>=1.6,<2
+geopandas>=0.14,<2
+pyogrio>=0.7
+shapely>=2.0,<3
+psycopg2-binary>=2.9,<3
+dbt-core>=1.10,<1.11
+dbt-postgres>=1.9,<1.10

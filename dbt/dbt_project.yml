@@ -1,0 +1,30 @@
+name: gaia_air_quality
+version: "1.1.0"
+config-version: 2
+
+profile: gaia_air_quality
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+clean-targets:
+  - target
+  - dbt_packages
+
+models:
+  gaia_air_quality:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
+
+seeds:
+  gaia_air_quality:
+    who_air_quality_guidelines:
+      +column_types:
+        pollutant_code: text
+        averaging_period: text
+        guideline_ugm3: numeric
+        source: text
