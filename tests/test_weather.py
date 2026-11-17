@@ -5,7 +5,6 @@ import pandas as pd
 import pytest
 import xarray as xr
 
-
 from gaia_pipeline.config import load_settings
 from gaia_pipeline.weather import build_request, derive, relative_humidity
 
