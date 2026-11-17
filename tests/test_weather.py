@@ -5,8 +5,14 @@ import pandas as pd
 import pytest
 import xarray as xr
 
+
 from gaia_pipeline.config import load_settings
 from gaia_pipeline.weather import build_request, derive, relative_humidity
+
+
+def scalar(da) -> float:
+    """Single value of a 1-element array (float() on arrays is removed in NumPy 2.x)."""
+    return float(np.asarray(da).reshape(-1)[0])
 
 
 def era5_dataset(u: float, v: float) -> xr.Dataset:
@@ -23,22 +29,22 @@ def era5_dataset(u: float, v: float) -> xr.Dataset:
 
 def test_units_and_derivations():
     out = derive(era5_dataset(u=0.0, v=-5.0), ["t2m", "rh", "wspd", "wdir", "tp"])
-    assert float(out["t2m"]) == pytest.approx(27.0)
-    assert float(out["wspd"]) == pytest.approx(5.0)
+    assert scalar(out["t2m"]) == pytest.approx(27.0)
+    assert scalar(out["wspd"]) == pytest.approx(5.0)
     # v < 0 means air moving south, i.e. a northerly wind: direction 0/360°
-    assert float(out["wdir"]) % 360 == pytest.approx(0.0)
-    assert float(out["tp"]) == pytest.approx(12.0)  # 0.5 mm/h * 24
-    assert 50 < float(out["rh"]) < 60
+    assert scalar(out["wdir"]) % 360 == pytest.approx(0.0)
+    assert scalar(out["tp"]) == pytest.approx(12.0)  # 0.5 mm/h * 24
+    assert 50 < scalar(out["rh"]) < 60
 
 
 def test_westerly_wind_direction():
     out = derive(era5_dataset(u=3.0, v=0.0), ["wdir"])
-    assert float(out["wdir"]) == pytest.approx(270.0)
+    assert scalar(out["wdir"]) == pytest.approx(270.0)
 
 
 def test_relative_humidity_saturation():
     t = xr.DataArray([20.0])
-    assert float(relative_humidity(t, t)) == pytest.approx(100.0)
+    assert scalar(relative_humidity(t, t)) == pytest.approx(100.0)
 
 
 def test_era5_request_whole_month():
