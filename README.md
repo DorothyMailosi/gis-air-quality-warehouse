@@ -8,6 +8,8 @@ behind the working group's Metabase dashboard.
 Countries configured: **Cameroon, Senegal, Malawi, Uganda, Ethiopia**. Adding a
 country takes one YAML file (see [docs/adding_a_country.md](docs/adding_a_country.md)).
 
+![Gaia GIS data warehouse overview: data sources, automated pipeline, PostGIS warehouse, dbt models and Metabase dashboard](docs/images/gaia_warehouse_overview.png)
+
 ```mermaid
 flowchart LR
     A[Copernicus ADS<br/>CAMS EAC4] -->|air quality| P
